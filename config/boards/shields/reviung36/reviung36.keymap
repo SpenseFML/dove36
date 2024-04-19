@@ -1,0 +1,130 @@
+/*
+ * Copyright (c) 2021 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+ 
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+
+/ {
+    behaviors {
+        ht_tp: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+        skq: sticky_key_quick_release {
+            compatible = "zmk,behavior-sticky-key";
+            #binding-cells = <1>;
+            bindings = <&kp>;
+            release-after-ms = <1000>;
+            quick-release;
+            ignore-modifiers;
+        };
+    };
+    keymap {
+        compatible = "zmk,keymap";
+        default_layer {
+        //|----------------------------------|    |----------------------------------|
+        //|   X  |   V  |   L  |   C  |   W  |    |   K  |   H  |   G  |   F  |   Q  |
+        //+------+------+------+------+------|    |------+------+------+------+------|
+        //|   U  |   I  |   A  |   E  |   O  |    |   S  |   N  |   R  |   T  |   D  |
+        //|------+------+------+------+------|    |------+------+------+------+------|
+        //|   Ü  |   Ö  |   Ä  |   P  |   Z  |    |   B  |   M  |   Y  |   ß  |   J  |
+        //|------+------+------+------+------|    |------+------+------+------+------|
+                      //|  M3  |  M2  |  M1  |    |  M3  |  SPC |  M4  |
+                      //|--------------------|    |--------------------|  
+
+            bindings = <
+                &kp X      &kp V    &kp L   &kp C    &kp W   &kp K   &kp H   &kp G   &kp F   &kp Q      
+                &kp U   &kp I    &kp A   &kp E   &kp O   &kp S   &kp N   &kp R   &kp T    &kp D
+                &kp LBKT   &ht_tp LGUI SEMI    &ht_tp LALT SQT   &ht_tp LCTRL P    &kp Y   &kp B   &ht_tp LCTRL M   &ht_tp COMMA Z   &ht_tp DOT MINUS   &kp J  
+                                  &mo 3   &mo 2    &mo 1   &kp SPACE   &skq LSHFT    &mo 3 
+            >;
+        };
+        movement_layer {
+
+        //|----------------------------------|    |----------------------------------|
+        //|  ESC |  BKS |  UP  |  DEL |  TAB |    |   ,  |   7  |   8  |   9  |   *  |
+        //+------+------+------+------+------|    |------+------+------+------+------|
+        //| HOME | LEFT | DOWN | RGHT |  END |    |   .  |   4  |   5  |   6  |   -  |
+        //|------+------+------+------+------|    |------+------+------+------+------|
+        //| PGUP | PGDW |  TAB | ENTR | NONE |    |   0  |   1  |   2  |   3  |   +  |
+        //|------+------+------+------+------|    |------+------+------+------+------|
+        //              | TRNS | TRNS | TRNS |    | TRNS | TRNS | TRNS |
+        //              |--------------------|    |--------------------|  
+
+            bindings = <
+                &kp ESC   &kp BSPC  &kp UP   &kp DEL   &kp TAB &kp COMMA  &kp N7   &kp N8   &kp N9   &kp LS(RBRC)      
+                &kp HOME  &kp LEFT  &kp DOWN &kp RIGHT &kp END &kp DOT    &kp N4   &kp N5   &kp N6   &kp FSLH   
+                &kp PG_UP &kp PG_DN &kp TAB  &kp ENTER &none   &kp N0     &kp N1   &kp N2   &kp N3   &kp RBKT  
+                                 &trans   &trans &trans   &trans   &trans   &trans 
+            >;
+        };
+        sign_layer {
+
+        //|----------------------------------|    |----------------------------------|
+        //|   €  |   _  |   [  |   ]  |   ^  |    |   !  |   <  |   >  |   =  |   &  |
+        //+------+------+------+------+------|    |------+------+------+------+------|
+        //|   \  |   /  |   {  |   }  |   *  |    |   ?  |   (  |   )  |   -  |   :  |
+        //|------+------+------+------+------|    |------+------+------+------+------|
+        //|   #  |   $  |   |  |   ~  |   @  |    |   +  |   %  |   "  |   '  |   ;  |
+        //|------+------+------+------+------|    |------+------+------+------+------|
+                      //| TRNS | TRNS | TRNS |    | TRNS | TRNS | TRNS |
+                      //|--------------------|    |--------------------|  
+
+            bindings = <
+                &kp RA(E)       &kp QMARK  &kp RA(N8)          &kp RA(N9)   &kp GRAVE    &kp EXCL  &kp NON_US_BSLH &kp LS(NON_US_BSLH) &kp RPAR   &kp CARET   
+                &kp RA(MINUS)   &kp AMPS   &kp RA(N7)          &kp RA(N0)   &kp LS(RBRC) &kp UNDER &kp ASTRK       &kp LS(N9)          &kp FSLH   &kp GT 
+                &kp NON_US_HASH &kp DOLLAR &kp RA(NON_US_BSLH) &kp RA(RBKT) &kp RA(Q)    &kp RBKT  &kp PRCNT       &kp AT              &kp PIPE   &kp LT       
+                                &trans &trans &trans &trans &trans  &trans
+            >;
+        };
+        function_layer {
+
+        //|----------------------------------|    |----------------------------------|
+        //| NONE - BKSP |  UP  |  DEL | NONE |    | NONE |  F7  |  F8  |  F9  |  F12 |
+        //+------+------+------+------+------|    |------+------+------+------+------|
+        //| HOME | LEFT | DOWN | RGHT |  END |    | NONE |  F4  |  F5  |  F6  |  F11 |
+        //|------+------+------+------+------|    |------+------+------+------+------|
+        //|   §  |   °  |  CMT | 1PSS | NONE |    | NONE |  F1  |  F2  |  F3  | NONE |
+        //|------+------+------+------+------|    |------+------+------+------+------|
+                      //| TRNS | TRNS | TRNS |    | TRNS | TRNS | TRNS |
+                      //|--------------------|    |--------------------|  
+
+            bindings = <
+                &none &kp LC(BSPC)        &kp LC(LS(UP))      &kp LC(DEL)         &none               &none           &kp F7  &kp F8  &kp F9 &kp F12 
+                &kp LS(HOME) &kp LC(LS(LEFT))    &kp LC(LS(DOWN))    &kp LC(LS(RIGHT))   &kp LS(END)	&none           &kp F4  &kp F5  &kp F6 &kp F11 
+                &kp LS(N3) &kp TILDE  &kp LA(NON_US_HASH) &kp LC(LS(X))       &none               &none          &kp F1  &kp F2  &kp F3 &none 
+                                &trans &trans &trans &trans &trans &trans  
+            >;
+        };
+        bluetooth_layer {
+
+        //|----------------------------------|    |----------------------------------|
+        //|  CLR | NONE | NONE | NONE | BOOT |    | NONE | NONE | NONE | NONE | BOOT |
+        //+------+------+------+------+------|    |------+------+------+------+------|
+        //|  BT3 |  BT2 |  BT1 |  BT0 | NONE |    | NONE | NONE | NONE | NONE | NONE |
+        //|------+------+------+------+------|    |------+------+------+------+------|
+        //| NONE | NONE | NONE | NONE | NONE |    | NONE | NONE | NONE | NONE | NONE |
+        //|------+------+------+------+------|    |------+------+------+------+------|
+                      //| TRNS | TRNS | TRNS |    | TRNS | TRNS | TRNS |
+                      //|--------------------|    |--------------------|  
+
+            bindings = <
+                &bt BT_CLR &none &none &none &bootloader &none &none &none &none &bootloader
+                &bt BT_SEL 3  &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0  &none  &none  &none  &none  &none   &none
+                &none  &none  &none  &none  &none  &none  &none  &none &none   &none  
+                               &trans &trans &trans &trans &trans  &trans
+            >;
+        };
+    };
+};
