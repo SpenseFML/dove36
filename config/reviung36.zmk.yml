@@ -1,0 +1,8 @@
+ file_format: "1"
+id: reviung36
+name: REVIUNG36
+type: shield
+url: https://github.com/gtips/reviung/tree/master/reviung41
+requires: [nice_nano_v2]
+features:
+  - keys
