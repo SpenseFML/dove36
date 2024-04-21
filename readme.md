@@ -16,6 +16,9 @@ I had to make some adjustmens to vanilla Neo2 to make it fit a 3x5 layout:
 I'll probably change "." and "," to the number block layer to be able to use my modifiers on both sides on the bottom row.
 If you want to learn more about Hold-tapping, be sure to look at the [ZMK config](https://zmk.dev/docs/behaviors/hold-tap) for it. I use the ["Tap-Preferred"](https://zmk.dev/docs/behaviors/hold-tap#option-2-tap-preferred) Option in this config.
 
+## Additional building info
+If you want to wire it like i did you have to connect both halves through the middle panel (where the nice nano sits) and make 2 holes with a hot needle or copper wire.
+
 ## Why ZMK?
 
 I use a [NiceNano V2](https://nicekeyboards.com/nice-nano/) in my setup, because I like to use my devices wireless. NiceNanos cant use QMK, thats why I have to use ZMK, which is no problem at all, because ZMK fit my needs quite right
