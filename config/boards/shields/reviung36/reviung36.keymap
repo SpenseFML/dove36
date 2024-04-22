@@ -45,9 +45,9 @@
 
             bindings = <
                 &kp X      &kp V    &kp L   &kp C    &kp W   &kp K   &kp H   &kp G   &kp F   &kp Q      
-                &kp U   &kp I    &kp A   &kp E   &kp O   &kp S   &kp N   &kp R   &kp T    &kp D
+                &ht_tp LSHIFT U   &kp I    &kp A   &kp E   &kp O   &kp S   &kp N   &kp R   &kp T    &ht_tp LSHIFT D
                 &kp LBKT   &ht_tp LGUI SEMI    &ht_tp LALT SQT   &ht_tp LCTRL P    &kp Y   &kp B   &ht_tp LCTRL M   &ht_tp COMMA Z   &ht_tp DOT MINUS   &kp J  
-                                  &mo 3   &mo 2    &mo 1   &kp SPACE   &skq LSHFT    &mo 3 
+                                  &mo 3   &mo 2    &mo 1   &kp SPACE   &mo 1    &mo 3 
             >;
         };
         movement_layer {
