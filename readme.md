@@ -13,7 +13,11 @@ The special character layer and the navigation & number block layer are designed
 
 I had to make some adjustmens to vanilla Neo2 to make it fit a 3x5 layout:
 "y" and "ß" are on "," and "." with an Hold-tap. This means that tapping the key will output "y" while holding it for 200ms will output ",". 
+I'll probably change "." and "," to the number block layer to be able to use my modifiers on both sides on the bottom row.
 If you want to learn more about Hold-tapping, be sure to look at the [ZMK config](https://zmk.dev/docs/behaviors/hold-tap) for it. I use the ["Tap-Preferred"](https://zmk.dev/docs/behaviors/hold-tap#option-2-tap-preferred) Option in this config.
+
+## Additional building info
+If you want to wire it like i did you have to connect both halves through the middle panel (where the nice nano sits) and make 2 holes with a hot needle or copper wire.
 
 ## Why ZMK?
 
