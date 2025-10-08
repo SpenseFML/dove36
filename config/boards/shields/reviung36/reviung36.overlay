@@ -49,7 +49,7 @@
 };
 
 
-&pro_micro_spi  {
+&spi0  {
     status = "okay";
     cs-gpios = <&pro_micro 3 GPIO_ACTIVE_LOW>;
 
