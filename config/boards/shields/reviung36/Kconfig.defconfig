@@ -6,10 +6,4 @@ if SHIELD_REVIUNG36
 config ZMK_KEYBOARD_NAME
     default "reviung36"
 
-config ZMK_POINTING
-    default y
-
-config SPI
-    default y
-
 endif
