@@ -50,27 +50,66 @@
     };
 };
 
-&spi0 {
-  status = "okay";
-  cs-gpios = <&pro_micro 19 GPIO_ACTIVE_LOW>;
 
-  glidepoint: glidepoint@0 {
-      compatible = "cirque,pinnacle";
-      reg = <0>;
-      spi-max-frequency = <1000000>;
-      status = "okay";
-      dr-gpios = <&pro_micro 5 (GPIO_ACTIVE_HIGH)>;
-      sensitivity = "4x";
-      sleep;
-      no-taps;
-  };
+&pro_micro_spi {
+	compatible = "nordic,nrf-spim";
+    status = "okay";
+
+    miso-pin = <1>; // P0.17
+    mosi-pin = <0>; // P0.20
+    sck-pin = <2>; // P0.22
+    cs-gpios = <&gpio0 3 GPIO_ACTIVE_LOW>; // P0.24
+
+    trackball: trackball@0 {
+        compatible = "pixart,pmw33xx";
+        reg = <0>;
+        label = "Pixart PMW3360";
+        cs-gpios = <&gpio0 3 GPIO_ACTIVE_LOW>; // P0.24
+        motswk-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>; // P1.00 = 32 + 0
+        spi-max-frequency = <10000000>;
+        cpi = <600>;
+    };
 };
 
-/ {
-    glidepoint_listener {
-        compatible = "zmk,input-listener";
-        device = <&glidepoint>;
+
+&pro_micro_spi {
+    status = "okay";
+
+    miso-pin = <1>; // P0.17
+    mosi-pin = <0>; // P0.20
+    sck-pin = <2>; // P0.22
+    cs-gpios = <&gpio0 3 GPIO_ACTIVE_LOW>; // P0.24
+
+    trackball: trackball@0 {
+        compatible = "pixart,pmw3360";
+        reg = <0>;
+        label = "Pixart PMW3360";
+        irq-gpios = <&gpio1 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        spi-max-frequency = <2000000>;
+        scroll-layer = <5>;
+    };
+};
+*/
+
+
+&nice_nano_spi {
+    compatible = "nordic,nrf-spim";
+    status = "okay";
+    miso-pin = <1>; // P0.17
+    mosi-pin = <0>; // P0.20
+    sck-pin = <2>; // P0.22
+    cs-gpios = <&gpio0 3 GPIO_ACTIVE_LOW>; // P0.24
+
+    trackpad: trackpad@0 {
+        compatible = "cirque,pinnacle";
         status = "okay";
+        reg = <0>;
+        label = "cirque trackpad";
+        spi-max-frequency = <1000000>;
+        dr-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
+        // invert-x;
+        sleep;
+        // no-taps;
     };
 };
 
