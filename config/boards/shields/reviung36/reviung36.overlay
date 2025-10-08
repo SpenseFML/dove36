@@ -90,24 +90,20 @@
 */
 
 
-&nice_nano_spi {
-    compatible = "nordic,nrf-spim";
+&pro_micro_spi {
     status = "okay";
-    miso-pin = <1>; // P0.17
-    mosi-pin = <0>; // P0.20
-    sck-pin = <2>; // P0.22
-    cs-gpios = <&gpio0 3 GPIO_ACTIVE_LOW>; // P0.24
+    cs-gpios = <&pro_micro 3 GPIO_ACTIVE_LOW>;
 
-    trackpad: trackpad@0 {
+    glidepoint: glidepoint@0 {
         compatible = "cirque,pinnacle";
-        status = "okay";
         reg = <0>;
-        label = "cirque trackpad";
         spi-max-frequency = <1000000>;
-        dr-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
-        // invert-x;
+        status = "okay";
+        dr-gpios = <&pro_micro 4 (GPIO_ACTIVE_HIGH)>;
+
+        sensitivity = "4x";
         sleep;
-        // no-taps;
+        no-taps;
     };
 };
 
